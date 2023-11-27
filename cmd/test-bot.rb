@@ -102,6 +102,11 @@ module Homebrew
 
     args = test_bot_args.parse
 
+    # Skip cleanup if the --keep-old option is provided
+    # args << "--cleanup" unless args.include?("--keep-old")
+    # args << "--cleanup" unless args.cleanup?
+    args << "--cleanup" unless args.keep_old?
+
     # Keep this after the .parse to keep --help fast.
     require_relative "../lib/test_bot"
 
